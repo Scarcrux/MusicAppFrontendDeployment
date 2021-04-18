@@ -2,10 +2,10 @@ import React from "react";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
 import CardList from "../components/CardList";
 import Axios from "axios";
-import { useHistory } from "react-router-dom";
 
 function MyLikes() {
 
@@ -26,7 +26,7 @@ function MyLikes() {
 
     async function MyLikes() {
     try{
-        let response = await Axios.get("http://127.0.0.1:5000/mylike/"+userInfo.user_id, {},{});
+        let response = await Axios.get("https://tangerinemusic.herokuapp.com/mylike/"+userInfo.user_id, {},{});
         console.log(response.data)
         let temp=[];
         response.data.map((e)=>{

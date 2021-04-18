@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -19,7 +20,6 @@ import { getList } from "../actions/listActions";
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import { Button } from '@material-ui/core';
 import 'react-jinke-music-player/assets/index.css';
-import { useState } from 'react';
 import Heart from "react-animated-heart";
 import Axios from "axios";
 import HOC from "../Hoc";
@@ -58,7 +58,7 @@ function SingleList(props) {
 
   async function isLike() {
     try{
-    let response = await Axios.get("http://127.0.0.1:5000/liked/"+props.id, {
+    let response = await Axios.get("https://tangerinemusic.herokuapp.com/liked/"+props.id, {
       headers: {
         "Authorization": ' Bearer ' + userInfo.refresh_token
       }
@@ -72,7 +72,7 @@ function SingleList(props) {
 
   async function likeList() {
     try{
-    let response = await Axios.post("http://127.0.0.1:5000/like/"+props.id, {}, {
+    let response = await Axios.post("https://tangerinemusic.herokuapp.com/like/"+props.id, {}, {
       headers: {
         "Authorization": ' Bearer ' + userInfo.refresh_token
       }
@@ -85,7 +85,7 @@ function SingleList(props) {
 
   async function unlikeList() {
     try{
-    let response = await Axios.post("http://127.0.0.1:5000/unlike/"+props.id, {}, {
+    let response = await Axios.post("https://tangerinemusic.herokuapp.com/unlike/"+props.id, {}, {
       headers: {
         "Authorization": ' Bearer ' + userInfo.refresh_token
       }
@@ -98,7 +98,7 @@ function SingleList(props) {
 
   async function userList() {
     try{
-    let response = await Axios.get("http://127.0.0.1:5000/likedlist/"+props.id, {}, {
+    let response = await Axios.get("https://tangerinemusic.herokuapp.com/likedlist/"+props.id, {}, {
     });
     let temp = [];
     response['data'].map((e)=>{

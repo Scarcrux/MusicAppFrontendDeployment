@@ -2,10 +2,10 @@ import React from "react";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
 import CardEvent from "../components/CardEvent";
 import Axios from "axios";
-import { useHistory } from "react-router-dom";
 
 function MyEvents() {
     const [events, setEvents] = useState([]);
@@ -25,7 +25,7 @@ function MyEvents() {
 
     async function MyEvents() {
     try{
-        let response = await Axios.get("http://127.0.0.1:5000/signedupevents/"+userInfo.user_id, {},{});
+        let response = await Axios.get("https://tangerinemusic.herokuapp.com/signedupevents/"+userInfo.user_id, {},{});
         let temp=[];
         response.data.map((e)=>{
             temp.push(e)

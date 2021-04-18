@@ -1,13 +1,9 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import { useState, useEffect } from 'react';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { useSelector,useDispatch } from 'react-redux';
-import { createAddress } from '../actions/addressActions';
-import { createEvent } from '../actions/eventActions';
 import { useHistory } from "react-router-dom";
+import { createEvent } from '../actions/eventActions';
 import { Form, Button } from 'react-bootstrap';
 import { Col } from 'reactstrap';
 import DateTimePicker from 'react-datetime-picker';

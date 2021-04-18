@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { Button } from 'reactstrap';
+import { useHistory } from "react-router-dom";
 import { useState } from 'react';
-import Axios from "axios";
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,8 +24,8 @@ import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
 import { Navbar } from 'react-bootstrap';
 import ColoredCircle from "../components/ColoredCircle";
-import { useHistory } from "react-router-dom";
-import HOC from "../Hoc";
+import { Button } from 'reactstrap';
+import Axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -100,7 +99,7 @@ function Inbox(props) {
 
     async function getPendingRequests() {
         try{
-        let response = await Axios.get("http://127.0.0.1:5000/pendingrequests", {
+        let response = await Axios.get("https://tangerinemusic.herokuapp.com/pendingrequests", {
             headers: {
                 "Authorization": ' Bearer ' + userInfo.access_token
               }
@@ -118,7 +117,7 @@ function Inbox(props) {
       async function getFriendLists() {
         try{
         
-        let response = await Axios.get("http://127.0.0.1:5000/friendlist", {
+        let response = await Axios.get("https://tangerinemusic.herokuapp.com/friendlist", {
             headers: {
                 "Authorization": ' Bearer ' + userInfo.access_token
               }
@@ -147,7 +146,7 @@ function Inbox(props) {
 
       async function acceptFriend(id) {
         try{
-        let response = await Axios.post("http://127.0.0.1:5000/acceptrequest/"+id, {}, {
+        let response = await Axios.post("https://tangerinemusic.herokuapp.com/acceptrequest/"+id, {}, {
             headers: {
                 "Authorization": ' Bearer ' + userInfo.access_token
               }

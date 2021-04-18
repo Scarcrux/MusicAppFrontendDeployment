@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { allLists } from "../actions/listActions";
 import Pagination from '@material-ui/lab/Pagination';
 import CardList from "../components/CardList";
 import SearchBar from "material-ui-search-bar";
-import { useState } from 'react';
 
 function Lists(props) {
   const [searchTerm, setSearchTerm] = useState('');

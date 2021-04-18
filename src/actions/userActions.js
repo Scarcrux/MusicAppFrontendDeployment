@@ -29,7 +29,7 @@ const logout = () => async (dispatch, getState) => {
   Cookie.remove("userInfo");
   dispatch({ type: USER_LOGOUT_REQUEST });
   try {
-    await Axios.post("http://127.0.0.1:5000/signout", {}, {
+    await Axios.post("https://tangerinemusic.herokuapp.com/signout", {}, {
         headers: {
           "Authorization": ' Bearer ' + userInfo.access_token
         }
@@ -43,7 +43,7 @@ const logout = () => async (dispatch, getState) => {
 const register = (username, email, password, bio, addressId) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST, payload: { username, email, password, bio, addressId } });
   try {
-    const { data } = await Axios.post("http://127.0.0.1:5000/register", { username, email, password, bio, address_id: addressId});
+    const { data } = await Axios.post("https://tangerinemusic.herokuapp.com/register", { username, email, password, bio, address_id: addressId});
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
   } catch (error) {
     console.log(error.response.data['message']);
@@ -54,7 +54,7 @@ const register = (username, email, password, bio, addressId) => async (dispatch)
 const signin = (username, password) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } });
   try {
-    const { data } = await Axios.post("http://127.0.0.1:5000/signin", { username, password });
+    const { data } = await Axios.post("https://tangerinemusic.herokuapp.com/signin", { username, password });
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
     Cookie.set('userInfo', JSON.stringify(data));
 }
@@ -68,7 +68,7 @@ const updateBio = (bio) => async (dispatch, getState) => {
   const user_id = userInfo.user_id;
   dispatch({ type: UPDATE_BIO_REQUEST});
   try {
-    const { data } = await Axios.put("http://127.0.0.1:5000/updatebio/"+user_id, { bio }, {
+    const { data } = await Axios.put("https://tangerinemusic.herokuapp.com/updatebio/"+user_id, { bio }, {
       headers: {
         "Authorization": ' Bearer ' + userInfo.access_token
       }
@@ -83,7 +83,7 @@ const updateBio = (bio) => async (dispatch, getState) => {
 const getBio = (user_id) => async (dispatch) => {
   dispatch({ type: GET_BIO_REQUEST});
   try {
-    const { data } = await Axios.get("http://127.0.0.1:5000/userbio/"+user_id, {});
+    const { data } = await Axios.get("https://tangerinemusic.herokuapp.com/userbio/"+user_id, {});
     dispatch({ type: GET_BIO_SUCCESS, payload: data });
   } catch (error) {
     console.log(error.response)
@@ -95,7 +95,7 @@ const uploadPic = (data1) => async (dispatch, getState) => {
   const { userSignin: { userInfo } } = getState();
   dispatch({ type: UPLOAD_PIC_REQUEST});
   try {
-    const { data } = await Axios.put("http://127.0.0.1:5000/upload/avatar", data1, {
+    const { data } = await Axios.put("https://tangerinemusic.herokuapp.com/upload/avatar", data1, {
       headers: {
       "Authorization": ' Bearer ' + userInfo.access_token,
       'Content-Type': 'multipart/form-data'
@@ -111,7 +111,7 @@ const uploadPic = (data1) => async (dispatch, getState) => {
 const userPic = (user_id) => async (dispatch, getState) => {
   dispatch({ type: GET_PIC_REQUEST});
   try {
-    const { data } = await Axios.get("http://127.0.0.1:5000/avatar/"+user_id, {});
+    const { data } = await Axios.get("https://tangerinemusic.herokuapp.com/avatar/"+user_id, {});
     dispatch({ type: GET_PIC_SUCCESS, payload: data });
   } catch (error) {
     console.log(error.response);

@@ -2,11 +2,10 @@ import React from "react";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
 import CardList from "../components/CardList";
 import Axios from "axios";
-import { useHistory } from "react-router-dom";
-
 
 function MyLists() {
     const [mylists, setMyLists] = useState([]);
@@ -26,7 +25,7 @@ function MyLists() {
 
     async function MyLists() {
     try{
-        let response = await Axios.get("http://127.0.0.1:5000/mylist", {
+        let response = await Axios.get("https://tangerinemusic.herokuapp.com/mylist", {
             headers: {
                 "Authorization": ' Bearer ' + userInfo.refresh_token
               }

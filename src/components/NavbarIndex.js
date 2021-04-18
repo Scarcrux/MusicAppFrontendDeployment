@@ -8,11 +8,11 @@ import {
   Nav,
   NavItem,
   NavLink,
+  NavbarText,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
-  NavbarText
+  DropdownItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { logout } from '../actions/userActions.js';
@@ -69,7 +69,7 @@ const NavbarIndex = (props) => {
   let path=null;
   if(pic)
   {
-    path = "http://127.0.0.1:5000/"+pic.replaceAll("\\","/");
+    path = "https://tangerinemusic.herokuapp.com/"+pic.replaceAll("\\","/");
     console.log(path);
   } 
 

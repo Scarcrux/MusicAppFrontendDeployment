@@ -1,9 +1,10 @@
 import Sidebar from '../components/Sidebar';
-import { updateBio } from '../actions/userActions';
 import { getBio } from '../actions/userActions';
 import { userPic } from '../actions/userActions';
 import { uploadPic } from '../actions/userActions';
+import { updateBio } from '../actions/userActions';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
 // @material-ui/core components
@@ -18,7 +19,6 @@ import CardHeader from "../components/Card/CardHeader.js";
 import CardAvatar from "../components/Card/CardAvatar.js";
 import CardBody from "../components/Card/CardBody.js";
 import CardFooter from "../components/Card/CardFooter.js";
-import { useHistory } from "react-router-dom";
 
 const styles = {
   cardCategoryWhite: {
@@ -46,12 +46,11 @@ function UserProfile() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [value, setValue] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const getBioReducer = useSelector((state) => state.userBio);
   const getPicReducer = useSelector((state) => state.userPic);
   const userSignInReducer = useSelector((state) => state.userSignin);
   const { bio } = getBioReducer;
-  const { pic,error } = getPicReducer;
+  const { pic } = getPicReducer;
   const { userInfo } = userSignInReducer;
 
   useEffect(() => {
@@ -82,7 +81,7 @@ function UserProfile() {
   let path=null;
   if(pic)
   {
-    path = "http://127.0.0.1:5000/"+pic.replaceAll("\\","/");
+    path = "https://tangerinemusic.herokuapp.com/"+pic.replaceAll("\\","/");
     console.log(path);
   } 
   return(
