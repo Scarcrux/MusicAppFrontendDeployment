@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { allEvents } from "../actions/eventActions";
 import Pagination from '@material-ui/lab/Pagination';
 import CardEvent from "../components/CardEvent.js";
 import SearchBar from "material-ui-search-bar";
-import { useState } from 'react';
 
 function Events(props) {
   const [searchTerm, setSearchTerm] = useState('');

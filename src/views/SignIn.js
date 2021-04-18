@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import { Link } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
-import { useEffect } from 'react';
 import Axios from "axios";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -13,8 +12,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { signin } from '../actions/userActions';
+import { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import { signin } from '../actions/userActions';
 import MuiAlert from '@material-ui/lab/Alert';
 
 function Alert(props) {
@@ -68,7 +68,7 @@ export default function SignIn() {
   async function resendConfirmation(e) {
     e.preventDefault();
     try{
-      let response = await Axios.post("http://127.0.0.1:5000/reconfirm", {email}, {
+      let response = await Axios.post("https://tangerinemusic.herokuapp.com/reconfirm", {email}, {
       });
       }catch(error){
         console.log(error.response);

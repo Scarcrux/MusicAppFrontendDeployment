@@ -16,7 +16,7 @@ const createList = (title, songs) => async (dispatch, getState) => {
       const { userSignin: { userInfo } } = getState();
       const user_id = userInfo.user_id;
       dispatch({ type: CREATE_LIST_REQUEST, payload: {title, user_id, songs} });
-      const { data } = await Axios.post("http://127.0.0.1:5000/createlist", { title, user_id, songs },{
+      const { data } = await Axios.post("https://tangerinemusic.herokuapp.com/createlist", { title, user_id, songs },{
         headers: {
             "Authorization": ' Bearer ' + userInfo.access_token
           }
@@ -31,7 +31,7 @@ const createList = (title, songs) => async (dispatch, getState) => {
   const allLists = (page, searchTerm) => async (dispatch) => {
     try {
       dispatch({ type: ALL_LIST_REQUEST, payload: {} });
-      const { data } = await Axios.get("http://127.0.0.1:5000/alllists/"+page+"?term="+searchTerm, {},{});
+      const { data } = await Axios.get("https://tangerinemusic.herokuapp.com/alllists/"+page+"?term="+searchTerm, {},{});
       dispatch({ type: ALL_LIST_SUCCESS, payload: data });
     } catch (error) {
       console.log(error.response);
@@ -43,7 +43,7 @@ const createList = (title, songs) => async (dispatch, getState) => {
     try {
       
       dispatch({ type: SINGLE_LIST_REQUEST, payload: {} });
-      const { data } = await Axios.get("http://127.0.0.1:5000/list/"+id, {},{});
+      const { data } = await Axios.get("https://tangerinemusic.herokuapp.com/list/"+id, {},{});
       dispatch({ type: SINGLE_LIST_SUCCESS, payload: data });
     } catch (error) {
       console.log(error.response);

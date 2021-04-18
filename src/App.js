@@ -17,7 +17,7 @@ function App() {
   const [current, setCurrent] = useState("");
   const userSignInReducer = useSelector((state) => state.userSignin);
   const { userInfo } = userSignInReducer;
-  const socket = io('http://127.0.0.1:5000');  
+  const socket = io('https://tangerinemusic.herokuapp.com');  
   useEffect(() => {
     socket.on('new_private_message', function(msg) {
       const item = {

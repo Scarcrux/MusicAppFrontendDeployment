@@ -10,12 +10,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import { register } from '../actions/userActions';
 import { createAddress } from '../actions/addressActions';
 import MuiAlert from '@material-ui/lab/Alert';
-import { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;

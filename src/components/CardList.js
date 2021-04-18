@@ -8,10 +8,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Axios from "axios";
 import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
@@ -33,7 +33,7 @@ export default function CardList(props) {
 
   async function getAuthor() {
     try{
-        let response = await Axios.get("http://127.0.0.1:5000/userprofile/"+props.user_id, {},{});
+        let response = await Axios.get("https://tangerinemusic.herokuapp.com/userprofile/"+props.user_id, {},{});
         setName(response.data.username);
         }catch(error){
           console.log(error.response);
@@ -41,7 +41,7 @@ export default function CardList(props) {
       }
   
     async function deleteList(){
-        let response = await Axios.delete("http://127.0.0.1:5000/list/"+props.id, {
+        let response = await Axios.delete("https://tangerinemusic.herokuapp.com/list/"+props.id, {
             headers: {
                 "Authorization": ' Bearer ' + userInfo.access_token
               }

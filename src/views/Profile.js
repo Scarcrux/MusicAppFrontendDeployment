@@ -6,10 +6,10 @@ import CardAvatar from "../components/Card/CardAvatar.js";
 import CardBody from "../components/Card/CardBody.js";
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Axios from "axios";
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
-import { useSelector } from 'react-redux';
 
 const styles = {
     cardCategoryWhite: {
@@ -39,7 +39,6 @@ function Profile(props) {
   const [userName, setUserName] = useState("");
   const [sent, setSent] = useState(false);
   const userSignInReducer = useSelector((state) => state.userSignin);
-  
   const { userInfo } = userSignInReducer;
 
   useEffect(() => {
@@ -50,7 +49,7 @@ function Profile(props) {
 
   async function getBio(id) {
     try{
-    let response = await Axios.get("http://127.0.0.1:5000/userprofile/"+id, {
+    let response = await Axios.get("https://tangerinemusic.herokuapp.com/userprofile/"+id, {
     });
     setBio(response.data.bio);
     setUserName(response.data.username);
@@ -61,7 +60,7 @@ function Profile(props) {
 
   async function getPic(id) {
     try{
-    let response = await Axios.get("http://127.0.0.1:5000/avatar/"+id, {
+    let response = await Axios.get("https://tangerinemusic.herokuapp.com/avatar/"+id, {
     });
     setPic(response.data)
     }catch(error){
@@ -71,7 +70,7 @@ function Profile(props) {
 
   async function sentRequest() {
     try{
-    let response = await Axios.get("http://127.0.0.1:5000/hassentrequest/"+props.id, {
+    let response = await Axios.get("https://tangerinemusic.herokuapp.com/hassentrequest/"+props.id, {
         headers: {
             "Authorization": ' Bearer ' + userInfo.access_token
           }
@@ -84,7 +83,7 @@ function Profile(props) {
 
   async function sendRequest() {
     try{
-    let response = await Axios.post("http://127.0.0.1:5000/sendrequest/"+props.id,{},{
+    let response = await Axios.post("https://tangerinemusic.herokuapp.com/sendrequest/"+props.id,{},{
         headers: {
             "Authorization": ' Bearer ' + userInfo.access_token
           }
@@ -97,7 +96,7 @@ function Profile(props) {
 
  let path=null;
  if(pic){
-     path = "http://127.0.0.1:5000/"+pic.replaceAll("\\","/");
+     path = "https://tangerinemusic.herokuapp.com/"+pic.replaceAll("\\","/");
      console.log(path);
   } 
   return(

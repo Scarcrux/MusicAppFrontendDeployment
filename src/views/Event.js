@@ -2,14 +2,14 @@ import React from "react";
 import CheckIcon from '@material-ui/icons/Check';
 import { getEvent } from "../actions/eventActions";
 import { useSelector,useDispatch } from 'react-redux';
-import Button from '@material-ui/core/Button';
 import { useEffect } from 'react';
+import { useState } from 'react';
 import Axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import Button from '@material-ui/core/Button';
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.css';
@@ -42,9 +42,9 @@ function Event(props) {
   const dispatch = useDispatch();
   const classes = useStyles(); 
   const getEventReducer = useSelector((state) => state.singleEvent);
+  const { event, users, address } = getEventReducer;
   const [attended, setAttended] = useState(false); 
   const [open, setOpen] = useState(false);
-  const { event, users, address } = getEventReducer;
   const userSignInReducer = useSelector((state) => state.userSignin);
   const { userInfo } = userSignInReducer;
 
@@ -56,7 +56,7 @@ function Event(props) {
   async function isAttended() {
     try{
     console.log(event);
-    let response = await Axios.get("http://127.0.0.1:5000/isattended/"+props.id, {
+    let response = await Axios.get("https://tangerinemusic.herokuapp.com/isattended/"+props.id, {
         headers: {
             "Authorization": ' Bearer ' + userInfo.refresh_token
           }
@@ -71,7 +71,7 @@ function Event(props) {
   async function signUp() {
     try{
     console.log(event);
-    let response = await Axios.post("http://127.0.0.1:5000/signup/"+props.id, {}, {
+    let response = await Axios.post("https://tangerinemusic.herokuapp.com/signup/"+props.id, {}, {
         headers: {
             "Authorization": ' Bearer ' + userInfo.refresh_token
           }
@@ -85,7 +85,7 @@ function Event(props) {
   async function undoSignUp() {
     try{
     console.log(event);
-    let response = await Axios.post("http://127.0.0.1:5000/undosignup/"+props.id, {}, {
+    let response = await Axios.post("https://tangerinemusic.herokuapp.com/undosignup/"+props.id, {}, {
         headers: {
             "Authorization": ' Bearer ' + userInfo.refresh_token
           }
