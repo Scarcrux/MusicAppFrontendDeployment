@@ -71,7 +71,6 @@ function UserProfile() {
     const image = new FormData();
     image.append('image', selectedFile);
     dispatch(uploadPic(image));
-    setSubmitted(true);
   }
 
   const submitBio = () => {
